@@ -115,7 +115,7 @@ Content-Type: application/json
 
 To create the GitHub token, you can either use the [GitHub web interface](https://github.com/settings/applications) or automate it via the [GitHub API](https://developer.github.com/v3/oauth_authorizations/#create-a-new-authorization).
 
-Make sure your GitHub token has the scopes [required](#external-apis) by DMC.
+Make sure your GitHub token has the scopes `repo`, `user` and `write:repo_hook` required by DMC.
 
 If you automate this process, authentication will become a handshake consisting of two requests:
 
