@@ -1,9 +1,5 @@
 ## List all project's environment
 
-Error Code | Meaning
------------|--------
-404        | Not Found -- No imported project with the given name exists on the system.
-
 ```http
 GET /projects/org1/project1/environments HTTP/1.1
 Host: <%= deploy_my_codes_api_url %>
@@ -61,3 +57,7 @@ JSON.parse(result.body)
 #   }
 # ]
 ```
+
+Error Code | Meaning
+-----------|--------
+404        | Not Found -- No imported project with the given name exists on the system.
