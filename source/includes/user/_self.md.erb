@@ -1,12 +1,16 @@
 ## Self
 
-> Profile informations
+Returns your profile on DMC
 
-This endpoint is used to have all your profile informations:
+`GET /users/self`
 
-* name
-* profile image
-* API key
+Attribute   | Description
+----------- | -----------
+email       | email on provider (GitHub)
+full_name   | full name on provider (Github)
+username    | username on provider (Github)
+avatar_url  | your avatar url on provider (Github)
+api_key     | DMC api key
 
 ```http
 GET /users/self HTTP/1.1

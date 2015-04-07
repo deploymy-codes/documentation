@@ -1,5 +1,14 @@
 ## Organizations
 
+List all organization of the current user
+
+`GET /users/orgs`
+
+Attribute   | Description
+----------- | -----------
+name        | organization name
+avatar_url  | organization avatar url
+
 ```http
 GET /users/orgs HTTP/1.1
 Host: <%= deploy_my_codes_api_url %>

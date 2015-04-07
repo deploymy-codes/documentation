@@ -1,43 +1,89 @@
-## Add a new project
+## Remote projects of current user
+
+List all remote projects of the current user
+
+`GET /users/remote_projects`
+
+Attribute   | Description
+----------- | -----------
+full_name   | remote project name, usually username/project_name
+owner       | owner of the project, usually username
+name        | project name
+url         | url where you can clone/see the project
+imported    | a boolean to inform you if you already have this project in DMC
 
 ```http
-POST /users/org1/remote_projects/project1 HTTP/1.1
-HOST: <%= deploy_my_codes_api_url %>
+GET /users/remote_projects HTTP/1.1
+Host: <%= deploy_my_codes_api_url %>
 Content-Type: application/json
 Authorization: <Your-API-Key>
 ```
 
 ```http
-HTTP/1.1 201 CREATED
+HTTP/1.1 200 OK
 Content-Type: application/json
-{
-  "name": "org1/project1",
-  "remote_id": 42,
-  "url": "https://github.com/org1/project1"
-}
+[
+  {
+    "full_name": "jdoe/project1",
+    "owner": "jdoe",
+    "name": "project1",
+    "url": "https://github.com/jdoe/project1",
+    "imported": false
+  },
+  {
+    "full_name": "jdoe/project2",
+    "owner": "jdoe",
+    "name": "project2",
+    "url": "https://github.com/jdoe/project2",
+    "imported": false
+  }
+]
 ```
 
 ```shell
-curl -XPOST <%= deploy_my_codes_api_url %>/users/org1/remote_projects/project1 -H "Authorization:<Your-API-Key>"
-{
-  "name": "org1/project1",
-  "remote_id": 42,
-  "url": "https://github.com/org1/project1"
-}
+curl <%= deploy_my_codes_api_url %>/users/remote_projects -H "Authorization:<Your-API-Key>"
+
+[
+  {
+    "full_name": "jdoe/project1",
+    "owner": "jdoe",
+    "name": "project1",
+    "url": "https://github.com/jdoe/project1",
+    "imported": false
+  },
+  {
+    "full_name": "jdoe/project2",
+    "owner": "jdoe",
+    "name": "project2",
+    "url": "https://github.com/jdoe/project2",
+    "imported": false
+  }
+]
 ```
 
 ```ruby
 require 'json'
 require 'net/http'
 
-url     = URI.parse('https://<%=  deploy_my_codes_api_url %>/users/org1/remote_projects/project1')
-request = Net::HTTP::Post.new(url.to_s)
+url     = URI.parse('https://<%=  deploy_my_codes_api_url %>/users/remote_projects')
+request = Net::HTTP::Get.new(url.to_s)
 request['Authorization'] = '<Your-API-Key>'
 result  = Net::HTTP.start(url.host, url.port) { |http| http.request(req) }
 JSON.parse(result.body)
-# {
-#   "name": "org1/project1",
-#   "remote_id": 42,
-#   "url": "https://github.com/org1/project1"
-# }
+# [
+#   {
+#     full_name: "jdoe/project1",
+#     owner: "jdoe",
+#     name: "project1",
+#     url: "https://github.com/jdoe/project1",
+#     imported: false
+#   },
+#   {
+#     full_name: "jdoe/project2",
+#     owner: "jdoe",
+#     name: "project2",
+#     url: "https://github.com/jdoe/project2",
+#     imported: false
+#   }
+# ]
 ```
