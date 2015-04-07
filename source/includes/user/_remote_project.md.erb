@@ -1,16 +1,5 @@
 ## Add a new project
 
-You have to supply `organization_name` and `project_name`
-The organization name can also be your name
-
-`POST /users/#{organization.name}/remote_projects/#{project.name}`
-
-Attribute   | Description
------------ | -----------
-name        | usually (username|organization_name)/project_name
-remote_id   | remote id of the project
-url         | url where you can clone/see the project
-
 ```http
 POST /users/org1/remote_projects/project1 HTTP/1.1
 HOST: <%= deploy_my_codes_api_url %>
@@ -52,3 +41,14 @@ JSON.parse(result.body)
 #   "url": "https://github.com/org1/project1"
 # }
 ```
+
+You have to supply `organization_name` and `project_name`
+The organization name can also be your name
+
+`POST /users/#{organization.name}/remote_projects/#{project.name}`
+
+Attribute   | Description
+----------- | -----------
+name        | usually (username|organization_name)/project_name
+remote_id   | remote id of the project
+url         | url where you can clone/see the project

@@ -1,16 +1,5 @@
 ## Self
 
-Returns your profile on DMC
-
-`GET /users/self`
-
-Attribute   | Description
------------ | -----------
-email       | email on provider (GitHub)
-full_name   | full name on provider (Github)
-username    | username on provider (Github)
-avatar_url  | your avatar url on provider (Github)
-api_key     | DMC api key
 
 ```http
 GET /users/self HTTP/1.1
@@ -60,3 +49,15 @@ JSON.parse(result.body)
 #   username: "johndoe"
 # }
 ```
+
+Returns your profile on DMC
+
+`GET /users/self`
+
+Attribute   | Description
+----------- | -----------
+email       | email on provider (GitHub)
+full_name   | full name on provider (Github)
+username    | username on provider (Github)
+avatar_url  | your avatar url on provider (Github)
+api_key     | DMC api key

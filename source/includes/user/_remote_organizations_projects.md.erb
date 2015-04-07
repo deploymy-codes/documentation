@@ -1,19 +1,5 @@
 ## Remote organization projects
 
-List all remote projects of the organization
-
-You have to supply `organization_name`
-
-`GET /users/orgs/{organization.name}/remote_projects`
-
-Attribute   | Description
------------ | -----------
-full_name   | remote project name, usually organization/project_name
-owner       | owner of the project, usually organization
-name        | project name
-url         | url where you can clone/see the project
-imported    | a boolean to inform you if you already have this project in DMC
-
 ```http
 GET /users/orgs/org1/remote_projects HTTP/1.1
 Host: <%= deploy_my_codes_api_url %>
@@ -89,3 +75,17 @@ JSON.parse(result.body)
 #   }
 # ]
 ```
+
+List all remote projects of the organization
+
+You have to supply `organization_name`
+
+`GET /users/orgs/{organization.name}/remote_projects`
+
+Attribute   | Description
+----------- | -----------
+full_name   | remote project name, usually organization/project_name
+owner       | owner of the project, usually organization
+name        | project name
+url         | url where you can clone/see the project
+imported    | a boolean to inform you if you already have this project in DMC
