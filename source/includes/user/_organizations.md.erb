@@ -1,0 +1,59 @@
+## Organizations
+
+```http
+GET /users/orgs HTTP/1.1
+Host: <%= deploy_my_codes_api_url %>
+Content-Type: application/json
+Authorization: <Your-API-Key>
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+[
+  {
+    "name": "rails",
+    "avatar_url": "https://avatars1.githubusercontent.com/u/XXXXXXX?v=3&s=400"
+  },
+  {
+    "name": "ruby",
+    "avatar_url": "https://avatars1.githubusercontent.com/u/YYYYYYY?v=3&s=400"
+  }
+]
+```
+
+```shell
+curl <%= deploy_my_codes_api_url %>/users/orgs -H "Authorization:<Your-API-Key>"
+
+[
+  {
+    "name": "rails",
+    "avatar_url": "https://avatars1.githubusercontent.com/u/XXXXXXX?v=3&s=400"
+  },
+  {
+    "name": "ruby",
+    "avatar_url": "https://avatars1.githubusercontent.com/u/YYYYYYY?v=3&s=400"
+  }
+]
+```
+
+```ruby
+require 'json'
+require 'net/http'
+
+url     = URI.parse('https://<%=  deploy_my_codes_api_url %>/users/orgs')
+request = Net::HTTP::Get.new(url.to_s)
+request['Authorization'] = '<Your-API-Key>'
+result  = Net::HTTP.start(url.host, url.port) { |http| http.request(req) }
+JSON.parse(result.body)
+# [
+#   {
+#     name: "rails",
+#     avatar_url: "https://avatars1.githubusercontent.com/u/XXXXXXX?v=3&s=400"
+#   },
+#   {
+#     name: "ruby",
+#     avatar_url: "https://avatars1.githubusercontent.com/u/YYYYYYY?v=3&s=400"
+#   }
+# ]
+```

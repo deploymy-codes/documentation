@@ -17,6 +17,8 @@ activate :syntax
 activate :relative_assets
 set :relative_links, true
 
+set :deploy_my_codes_api_url, 'api.deploymy.codes'
+
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment

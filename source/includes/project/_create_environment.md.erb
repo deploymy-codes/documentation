@@ -1,0 +1,47 @@
+## Create project's environment
+
+```http
+POST /projects/org1/project1/environments HTTP/1.1
+Host: <%= deploy_my_codes_api_url %>
+Content-Type: application/json
+Authorization: <Your-API-Key>
+
+{
+  "name": "production",
+  "strategy": "heroku"
+}
+```
+
+```http
+HTTP/1.1 201 CREATED
+Content-Type: application/json
+{
+  "name": "production",
+  "strategy": "heroku"
+}
+```
+
+```shell
+curl -XPOST <%= deploy_my_codes_api_url %>/projects/org1/project1/environments -H "Authorization:<Your-API-Key>" -d '{ "environment": { "name": "production", "strategy": "heroku" }}'
+
+{
+  "name": "production",
+  "strategy": "heroku"
+}
+```
+
+```ruby
+require 'json'
+require 'net/http'
+
+url     = URI.parse('https://<%=  deploy_my_codes_api_url %>/projects/org1/project1/environments')
+request = Net::HTTP::Post.new(url.to_s)
+request['Authorization'] = '<Your-API-Key>'
+request.body = { environment: { name: "production", strategy: "heroku" }}.to_json
+result  = Net::HTTP.start(url.host, url.port) { |http| http.request(req) }
+JSON.parse(result.body)
+# {
+#   "name": "production",
+#   "strategy": "heroku"
+# }
+```

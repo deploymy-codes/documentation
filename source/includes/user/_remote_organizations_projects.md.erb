@@ -1,0 +1,77 @@
+## Remote organization projects
+
+```http
+GET /users/orgs/org1/remote_projects HTTP/1.1
+Host: <%= deploy_my_codes_api_url %>
+Content-Type: application/json
+Authorization: <Your-API-Key>
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+[
+  {
+    "full_name": "org1/project1",
+    "owner": "org1",
+    "name": "org1",
+    "url": "https://github.com/org1/project1",
+    "imported": false
+  },
+  {
+    "full_name": "org1/project2",
+    "owner": "org1",
+    "name": "project2",
+    "url": "https://github.com/org1/project2",
+    "imported": false
+  }
+]
+```
+
+```shell
+curl <%= deploy_my_codes_api_url %>/users/orgs/org1/remote_projects -H "Authorization:<Your-API-Key>"
+
+[
+  {
+    "full_name": "org1/project1",
+    "owner": "org1",
+    "name": "project1",
+    "url": "https://github.com/org1/project1",
+    "imported": false
+  },
+  {
+    "full_name": "org1/project2",
+    "owner": "org1",
+    "name": "project2",
+    "url": "https://github.com/org1/project2",
+    "imported": false
+  }
+]
+```
+
+```ruby
+require 'json'
+require 'net/http'
+
+url     = URI.parse('https://<%=  deploy_my_codes_api_url %>/users/orgs/org1/remote_projects')
+request = Net::HTTP::Get.new(url.to_s)
+request['Authorization'] = '<Your-API-Key>'
+result  = Net::HTTP.start(url.host, url.port) { |http| http.request(req) }
+JSON.parse(result.body)
+# [
+#   {
+#     full_name: "org1/project1",
+#     owner: "org1",
+#     name: "project1",
+#     url: "https://github.com/org1/project1",
+#     imported: false
+#   },
+#   {
+#     full_name: "org1/project2",
+#     owner: "org1",
+#     name: "project2",
+#     url: "https://github.com/org1/project2",
+#     imported: false
+#   }
+# ]
+```

@@ -1,0 +1,79 @@
+## Remote self projects
+
+You have to different kind of remote projects. You own remote projects and your organization remote projects.
+
+```http
+GET /users/remote_projects HTTP/1.1
+Host: <%= deploy_my_codes_api_url %>
+Content-Type: application/json
+Authorization: <Your-API-Key>
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+[
+  {
+    "full_name": "jdoe/project1",
+    "owner": "jdoe",
+    "name": "project1",
+    "url": "https://github.com/jdoe/project1",
+    "imported": false
+  },
+  {
+    "full_name": "jdoe/project2",
+    "owner": "jdoe",
+    "name": "project2",
+    "url": "https://github.com/jdoe/project2",
+    "imported": false
+  }
+]
+```
+
+```shell
+curl <%= deploy_my_codes_api_url %>/users/remote_projects -H "Authorization:<Your-API-Key>"
+
+[
+  {
+    "full_name": "jdoe/project1",
+    "owner": "jdoe",
+    "name": "project1",
+    "url": "https://github.com/jdoe/project1",
+    "imported": false
+  },
+  {
+    "full_name": "jdoe/project2",
+    "owner": "jdoe",
+    "name": "project2",
+    "url": "https://github.com/jdoe/project2",
+    "imported": false
+  }
+]
+```
+
+```ruby
+require 'json'
+require 'net/http'
+
+url     = URI.parse('https://<%=  deploy_my_codes_api_url %>/users/remote_projects')
+request = Net::HTTP::Get.new(url.to_s)
+request['Authorization'] = '<Your-API-Key>'
+result  = Net::HTTP.start(url.host, url.port) { |http| http.request(req) }
+JSON.parse(result.body)
+# [
+#   {
+#     full_name: "jdoe/project1",
+#     owner: "jdoe",
+#     name: "project1",
+#     url: "https://github.com/jdoe/project1",
+#     imported: false
+#   },
+#   {
+#     full_name: "jdoe/project2",
+#     owner: "jdoe",
+#     name: "project2",
+#     url: "https://github.com/jdoe/project2",
+#     imported: false
+#   }
+# ]
+```

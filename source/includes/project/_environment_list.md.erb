@@ -1,0 +1,63 @@
+## List all project's environment
+
+Error Code | Meaning
+-----------|--------
+404        | Not Found -- No imported project with the given name exists on the system.
+
+```http
+GET /projects/org1/project1/environments HTTP/1.1
+Host: <%= deploy_my_codes_api_url %>
+Content-Type: application/json
+Authorization: <Your-API-Key>
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+[
+  {
+    "name": "production",
+    "strategy": "heroku"
+  },
+  {
+    "name": "staging",
+    "strategy": "heroku"
+  }
+]
+```
+
+```shell
+curl <%= deploy_my_codes_api_url %>/projects/org1/project1/environments -H "Authorization:<Your-API-Key>"
+
+[
+  {
+    "name": "production",
+    "strategy": "heroku"
+  },
+  {
+    "name": "staging",
+    "strategy": "heroku"
+  }
+]
+```
+
+```ruby
+require 'json'
+require 'net/http'
+
+url     = URI.parse('https://<%=  deploy_my_codes_api_url %>/projects/org1/project1/environments')
+request = Net::HTTP::Get.new(url.to_s)
+request['Authorization'] = '<Your-API-Key>'
+result  = Net::HTTP.start(url.host, url.port) { |http| http.request(req) }
+JSON.parse(result.body)
+# [
+#   {
+#     "name": "production",
+#     "strategy": "heroku"
+#   },
+#   {
+#     "name": "staging",
+#     "strategy": "heroku"
+#   }
+# ]
+```

@@ -1,0 +1,48 @@
+## Fetch a project
+
+Error Code | Meaning
+-----------|--------
+404        | Not Found -- No imported project with the given name exists on the system.
+
+```http
+GET /projects/org1/project1 HTTP/1.1
+Host: <%= deploy_my_codes_api_url %>
+Content-Type: application/json
+Authorization: <Your-API-Key>
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "name": "org1/project1",
+  "remote_id": 42,
+  "url": "https://github.com/org1/project1"
+}
+```
+
+```shell
+curl <%= deploy_my_codes_api_url %>/projects/org1/project1 -H "Authorization:<Your-API-Key>"
+
+{
+  "name": "org1/project1",
+  "remote_id": 42,
+  "url": "https://github.com/org1/project1"
+}
+```
+
+```ruby
+require 'json'
+require 'net/http'
+
+url     = URI.parse('https://<%=  deploy_my_codes_api_url %>/projects/org1/project1')
+request = Net::HTTP::Get.new(url.to_s)
+request['Authorization'] = '<Your-API-Key>'
+result  = Net::HTTP.start(url.host, url.port) { |http| http.request(req) }
+JSON.parse(result.body)
+# {
+#   "name": "org1/project1",
+#   "remote_id": 42,
+#   "url": "https://github.com/org1/project1"
+# },
+```

@@ -1,0 +1,43 @@
+## Add a new project
+
+```http
+POST /users/org1/remote_projects/project1 HTTP/1.1
+HOST: <%= deploy_my_codes_api_url %>
+Content-Type: application/json
+Authorization: <Your-API-Key>
+```
+
+```http
+HTTP/1.1 201 CREATED
+Content-Type: application/json
+{
+  "name": "org1/project1",
+  "remote_id": 42,
+  "url": "https://github.com/org1/project1"
+}
+```
+
+```shell
+curl -XPOST <%= deploy_my_codes_api_url %>/users/org1/remote_projects/project1 -H "Authorization:<Your-API-Key>"
+{
+  "name": "org1/project1",
+  "remote_id": 42,
+  "url": "https://github.com/org1/project1"
+}
+```
+
+```ruby
+require 'json'
+require 'net/http'
+
+url     = URI.parse('https://<%=  deploy_my_codes_api_url %>/users/org1/remote_projects/project1')
+request = Net::HTTP::Post.new(url.to_s)
+request['Authorization'] = '<Your-API-Key>'
+result  = Net::HTTP.start(url.host, url.port) { |http| http.request(req) }
+JSON.parse(result.body)
+# {
+#   "name": "org1/project1",
+#   "remote_id": 42,
+#   "url": "https://github.com/org1/project1"
+# }
+```

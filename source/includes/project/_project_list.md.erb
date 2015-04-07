@@ -1,0 +1,65 @@
+## List project
+
+```http
+GET /projects HTTP/1.1
+Host: <%= deploy_my_codes_api_url %>
+Content-Type: application/json
+Authorization: <Your-API-Key>
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+[
+  {
+    "name": "org1/project1",
+    "remote_id": 42,
+    "url": "https://github.com/org1/project1"
+  },
+  {
+    "name": "username/my-project",
+    "remote_id": 1337,
+    "url": "https://github.com/username/my-project"
+  },
+]
+```
+
+```shell
+curl <%= deploy_my_codes_api_url %>/projects -H "Authorization:<Your-API-Key>"
+
+[
+  {
+    "name": "org1/project1",
+    "remote_id": 42,
+    "url": "https://github.com/org1/project1"
+  },
+  {
+    "name": "username/my-project",
+    "remote_id": 1337,
+    "url": "https://github.com/username/my-project"
+  },
+]
+```
+
+```ruby
+require 'json'
+require 'net/http'
+
+url     = URI.parse('https://<%=  deploy_my_codes_api_url %>/projects')
+request = Net::HTTP::Get.new(url.to_s)
+request['Authorization'] = '<Your-API-Key>'
+result  = Net::HTTP.start(url.host, url.port) { |http| http.request(req) }
+JSON.parse(result.body)
+# [
+#   {
+#     "name": "org1/project1",
+#     "remote_id": 42,
+#     "url": "https://github.com/org1/project1"
+#   },
+#   {
+#     "name": "username/my-project",
+#     "remote_id": 1337,
+#     "url": "https://github.com/username/my-project"
+#   },
+# ]
+```
