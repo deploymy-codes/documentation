@@ -1,8 +1,5 @@
 ## Fetch a project
 
-Error Code | Meaning
------------|--------
-404        | Not Found -- No imported project with the given name exists on the system.
 
 ```http
 GET /projects/org1/project1 HTTP/1.1
@@ -46,3 +43,19 @@ JSON.parse(result.body)
 #   "url": "https://github.com/org1/project1"
 # },
 ```
+
+Retrieve a single project
+
+You have to suply `organization_name` and `project_name`
+
+`GET /projects/#{organization.name}/#{project.name}`
+
+Attribute   | Description
+----------- | -----------
+name        | usually (username|organization_name)/project_name
+remote_id   | remote id of the project
+url         | url where you can clone/see the project
+
+Error Code | Meaning
+-----------|--------
+404        | Not Found -- No imported project with the given name exists on the system.
